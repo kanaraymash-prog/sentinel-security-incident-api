@@ -1,0 +1,47 @@
+@baseUrl = http://localhost:8080/api/incidentes
+@id = 1
+
+### Criar incidente
+POST {{baseUrl}}
+Content-Type: application/json
+
+{
+  "titulo": "Acesso suspeito",
+  "descricao": "Tentativas de acesso fora do horário comercial.",
+  "categoria": "ACESSO_NAO_AUTORIZADO",
+  "severidade": "ALTA",
+  "status": "ABERTO",
+  "origem": "Monitoramento"
+}
+
+### Listar incidentes
+GET {{baseUrl}}
+
+### Consultar por ID
+GET {{baseUrl}}/{{id}}
+
+### Atualizar completamente
+PUT {{baseUrl}}/{{id}}
+Content-Type: application/json
+
+{
+  "titulo": "Acesso não autorizado",
+  "descricao": "Credenciais acessadas sem permissão.",
+  "categoria": "ATIVIDADE_SUSPEITA",
+  "severidade": "CRITICA",
+  "status": "EM_ANALISE",
+  "origem": "EDR",
+  "detalhesResolucao": null
+}
+
+### Atualizar parcialmente e resolver
+PATCH {{baseUrl}}/{{id}}
+Content-Type: application/json
+
+{
+  "status": "RESOLVIDO",
+  "detalhesResolucao": "Senha redefinida e sessão encerrada."
+}
+
+### Excluir
+DELETE {{baseUrl}}/{{id}}
